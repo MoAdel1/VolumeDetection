@@ -1,0 +1,36 @@
+object detection:
+https://www.pyimagesearch.com/2016/03/21/ordering-coordinates-clockwise-with-python-and-opencv/
+https://www.pyimagesearch.com/2016/03/28/measuring-size-of-objects-in-an-image-with-opencv/
+https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/
+https://www.pyimagesearch.com/2017/09/18/real-time-object-detection-with-deep-learning-and-opencv/
+http://blog.alpaca.ai/open-source-pure-python-selective-search-and-advanced-object-recognition-with-labellio/
+http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_watershed/py_watershed.html
+https://stackoverflow.com/questions/40443988/python-opencv-ocr-image-segmentation
+
+
+
+
+3d construction from 2d:
+http://www.rasmus.is/uk/t/F/Su66k04.htm
+
+
+plot the contor:
+https://stackoverflow.com/questions/13634349/plot-2-dimensional-numpy-array-using-specific-columns
+
+
+
+
+
+zatona for volume estimation: 
+http://www.rasmus.is/uk/t/F/Su66k04.htm   (construct volume)
+https://stackoverflow.com/questions/43586082/how-to-draw-solid-of-revolution-of-a-polynomial-function-about-y-axis/43586431  (draw solid volume of revolution)
+https://www.pyimagesearch.com/2016/03/21/ordering-coordinates-clockwise-with-python-and-opencv/        (part-1) "size of object"
+https://www.pyimagesearch.com/2016/03/28/measuring-size-of-objects-in-an-image-with-opencv/            (part-2) "size of object"
+https://www.pyimagesearch.com/2016/04/04/measuring-distance-between-objects-in-an-image-with-opencv/   (part-3) "size of object" 
+http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_watershed/py_watershed.html (image segmentation)
+
+
+
+
+semantic segmentation:
+https://github.com/mrgloom/awesome-semantic-segmentation
