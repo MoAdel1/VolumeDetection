@@ -22,6 +22,7 @@ def draw_line(event,x,y,flags,param):
     elif event == cv2.EVENT_LBUTTONUP:
         drawing = False
         cv2.line(img,(ix,iy),(x,y),(0,0,255),5)
+        # measure distance
         #print(math.sqrt((ix-x)**2+(iy-y)**2))
         #print((y-iy))
         
