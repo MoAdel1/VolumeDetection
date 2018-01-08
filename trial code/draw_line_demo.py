@@ -23,7 +23,7 @@ def draw_line(event,x,y,flags,param):
         drawing = False
         cv2.line(img,(ix,iy),(x,y),(0,0,255),5)
         #print(math.sqrt((ix-x)**2+(iy-y)**2))
-        #print((y-iy))
+        print((y-iy))
         
 
 

@@ -1,0 +1,2 @@
+1) add a CNN classifier stage to estimate the empty space volume calibration factor (if possible)
+2) can the stage of measuring be automated

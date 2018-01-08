@@ -1,0 +1,6 @@
+python3 main.py -i "/home/master/Desktop/Volume_detect/volume_V.4/test_images/test9.jpg" -s 10 -p 3 -v 0 -c 0 -l 14.5
+
+
+
+
+((for best accuracy use high number of splits and low order polynomial)) 
