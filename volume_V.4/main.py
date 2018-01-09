@@ -39,7 +39,7 @@ splits = int(args["splits"]) # number of splits per shape
 poly_order = int(args["poly_order"]) # order of the polynomial 
 split_flag = int(args["view_splits"]) # see splits or not
 half_flag = int(args["curve_view"]) # put half curve or not
-height_calib = float(args["length"]) # for calibrating pixel ratio
+height_calib = float(args["length"]) # ref. object length
 
 ## [detect objects to measure]
 img = cv2.imread(path)
@@ -78,7 +78,7 @@ cnts = cnts[0] if imutils.is_cv2() else cnts[1]
 mask_objects = np.zeros(img.shape,np.uint8)
 cv2.drawContours(mask_objects,cnts,-1,(255,255,255),-1)
 
-## [detect objects to measure]
+## [detect ref. objects]
 img = cv2.imread(path)
 drawing = False # true if mouse is pressed
 ix,iy = -1,-1
@@ -190,19 +190,27 @@ for shape in shapes:
     fig = plt.figure()
     fig.suptitle("Shape reconstruction",fontsize=16)
     if(half_flag):
-        draw_fit = fig.add_subplot(1,2,1)
+        draw_fit = fig.add_subplot(1,3,1)
         draw_fit.set_yticklabels([])
         draw_fit.set_xticklabels([])
         draw_fit.set_title("half shape fitting")
-        draw_3d = fig.add_subplot(1,2,2,projection='3d')
+        draw_3d = fig.add_subplot(1,3,2,projection='3d')
         draw_3d.set_yticklabels([])
         draw_3d.set_xticklabels([])
         draw_3d.set_zticklabels([])
+        shaded = fig.add_subplot(1,3,3)
+        shaded.set_yticklabels([])
+        shaded.set_xticklabels([])
+        shaded.set_title("shaded image")
     else:
-        draw_3d = fig.add_subplot(1,1,1,projection='3d')
+        draw_3d = fig.add_subplot(1,2,1,projection='3d')
         draw_3d.set_yticklabels([])
         draw_3d.set_xticklabels([])
         draw_3d.set_zticklabels([])
+        shaded = fig.add_subplot(1,2,2)
+        shaded.set_yticklabels([])
+        shaded.set_xticklabels([])
+        shaded.set_title("shaded image")
     # X axis values
     x = shape[:,1].reshape(-1, 1) # reshape as a matrix
     x = x-min(x)
@@ -235,6 +243,17 @@ for shape in shapes:
     volume_value = sum(volume)  # calibrating shape volume 
     volume_string = "%.3f" % volume_value
     draw_3d.set_title("3D reconstruction -- Volume = "+volume_string)
+    # construct shaded iamges
+    original_image = cv2.imread(path)
+    mask = cv2.cvtColor(mask_objects,cv2.COLOR_BGR2GRAY)
+    ret,mask = cv2.threshold(mask, 10, 255, cv2.THRESH_BINARY)
+    inv_mask = cv2.bitwise_not(mask)
+    selected_objetcs = cv2.bitwise_and(original_image,original_image,mask=mask)
+    not_selected_objects = cv2.bitwise_and(original_image,original_image,mask=inv_mask)
+    not_selected_objects = cv2.cvtColor(not_selected_objects,cv2.COLOR_BGR2GRAY)
+    not_selected_objects = cv2.cvtColor(not_selected_objects,cv2.COLOR_GRAY2BGR)
+    ref_shaded_image = cv2.addWeighted(selected_objetcs,1,not_selected_objects,0.5,0)
+    shaded.imshow(ref_shaded_image)
     # show plots
     plt.show()
 
